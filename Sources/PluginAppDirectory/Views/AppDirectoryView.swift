@@ -51,22 +51,22 @@ public struct AppDirectoryView: View {
 
     /// 应用目录分组。
     ///
-    /// 行间不画显式分隔线：macOS 上靠 `AppSettingSection` 的卡片边界分组，
-    /// iOS 上 `AppSettingRow` 自带发丝线（再画一条会变成双线）。
+    /// 行作为 `AppSettingSection` 的直接子元素，不套 `VStack`：
+    /// - macOS：section 内部是 `VStack(spacing: 12)`，行间自动留白；
+    /// - iOS：section 内部是 `VStack(spacing: 0)`，靠 `AppSettingRow`
+    ///   自带的发丝分隔线区分行（再画一条会变成双线）。
     private var directorySection: some View {
         AppSettingSection(title: title, footer: footer) {
-            VStack(spacing: 0) {
-                ForEach(apps) { app in
-                    appRow(app)
-                }
-
-                linkRow(
-                    title: allProductsTitle,
-                    description: allProductsDescription,
-                    systemImage: "square.grid.2x2",
-                    urlString: allProductsURLString
-                )
+            ForEach(apps) { app in
+                appRow(app)
             }
+
+            linkRow(
+                title: allProductsTitle,
+                description: allProductsDescription,
+                systemImage: "square.grid.2x2",
+                urlString: allProductsURLString
+            )
         }
     }
 
