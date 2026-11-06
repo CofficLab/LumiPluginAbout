@@ -39,19 +39,26 @@ public struct AppDirectoryView: View {
     }
 
     public var body: some View {
+        AppSettingsContentScaffold(maxContentWidth: nil) {
+            VStack(alignment: .leading, spacing: 16) {
+                directorySection
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+
+    // MARK: - Sections
+
+    /// 应用目录分组。
+    ///
+    /// 行间不画显式分隔线：macOS 上靠 `AppSettingSection` 的卡片边界分组，
+    /// iOS 上 `AppSettingRow` 自带发丝线（再画一条会变成双线）。
+    private var directorySection: some View {
         AppSettingSection(title: title, footer: footer) {
             VStack(spacing: 0) {
-                ForEach(Array(apps.enumerated()), id: \.element.id) { index, app in
-                    if index > 0 {
-                        Divider()
-                            .padding(.vertical, 8)
-                    }
-
+                ForEach(apps) { app in
                     appRow(app)
                 }
-
-                Divider()
-                    .padding(.vertical, 8)
 
                 linkRow(
                     title: allProductsTitle,
