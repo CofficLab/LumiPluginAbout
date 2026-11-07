@@ -7,8 +7,8 @@ import os
 /// 「关于」插件。
 ///
 /// 在宿主设置界面注入一个独立入口「关于」，页面包含两部分：
-/// - **我们的应用**：Coffic Lab 旗下其他应用，链接到官网的对应产品页；
-/// - **关于我们**：宿主自己的官网、隐私政策、服务条款。
+/// - **我们的产品**：Coffic Lab 旗下应用与网站，链接到各自的站点；
+/// - **关于我们**：宿主自己的官网、隐私政策、服务条款，以及无障碍与 AI 使用说明。
 ///
 /// 宿主可注入自己的品牌 id 与官网地址复用本包（与 `PluginPluginManager` /
 /// `PluginStorage` 的做法一致）。
@@ -60,7 +60,7 @@ public final class AboutPlugin: SuperPlugin, SuperLog {
             id: id,
             name: pluginLocalization.string("About"),
             description: pluginLocalization.string("Our apps and information about this app."),
-            version: "2.0.0",
+            version: "3.0.0",
             category: .general,
             stage: .stable,
             policy: policy
