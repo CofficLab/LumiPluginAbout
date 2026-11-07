@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import PluginAppDirectory
+@testable import PluginAbout
 
 /// 应用目录的数据契约测试。
 ///
@@ -61,6 +61,16 @@ struct CofficAppsTests {
     func sectionStringsHaveChineseTranslation() throws {
         #expect(try #require(Self.localizedIn(language: "zh-Hans", "Our Apps")) == "我们的应用")
         #expect(try #require(Self.localizedIn(language: "zh-Hans", "All Products")) == "全部产品")
+    }
+
+    /// 「关于」页新增的法律链接文案也必须有中文译文。
+    @Test
+    func aboutStringsHaveChineseTranslation() throws {
+        #expect(try #require(Self.localizedIn(language: "zh-Hans", "About")) == "关于")
+        #expect(try #require(Self.localizedIn(language: "zh-Hans", "About Us")) == "关于我们")
+        #expect(try #require(Self.localizedIn(language: "zh-Hans", "Official Website")) == "官方网站")
+        #expect(try #require(Self.localizedIn(language: "zh-Hans", "Privacy Policy")) == "隐私政策")
+        #expect(try #require(Self.localizedIn(language: "zh-Hans", "Terms of Service")) == "服务条款")
     }
 
     /// 按编译产物里的 `.lproj` 解析字符串，验证译文确实被打包进去。

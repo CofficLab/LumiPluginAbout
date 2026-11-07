@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "LumiPluginAppDirectory",
+    name: "LumiPluginAbout",
     defaultLocalization: "en",
     platforms: [
         .macOS(.v14),
@@ -10,8 +10,8 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "PluginAppDirectory",
-            targets: ["PluginAppDirectory"]
+            name: "PluginAbout",
+            targets: ["PluginAbout"]
         )
     ],
     dependencies: [
@@ -23,7 +23,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "PluginAppDirectory",
+            name: "PluginAbout",
             dependencies: [
                 .product(name: "KernelCore", package: "LumiKernel"),
                 .product(name: "LumiLoggingKit", package: "LumiLogging"),
@@ -31,17 +31,17 @@ let package = Package(
                 .product(name: "LumiUI", package: "LumiUI"),
                 .product(name: "LumiLocalizationKit", package: "LumiLocalization"),
             ],
-            path: "Sources/PluginAppDirectory",
+            path: "Sources/PluginAbout",
             resources: [.process("../../Resources/Localizable.xcstrings")]
         ),
         .testTarget(
-            name: "PluginAppDirectoryTests",
+            name: "PluginAboutTests",
             dependencies: [
-                "PluginAppDirectory",
+                "PluginAbout",
                 .product(name: "KernelCore", package: "LumiKernel"),
                 .product(name: "ProviderSettingView", package: "LumiSettings"),
             ],
-            path: "Tests/PluginAppDirectoryTests"
+            path: "Tests/PluginAboutTests"
         ),
     ]
 )
