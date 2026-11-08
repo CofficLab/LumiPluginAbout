@@ -1,50 +1,48 @@
 # LumiPluginAbout
 
-「关于」插件的**共享远程包**，供 Lumi / Cisum / GameFactory / GitOK / Wakey
-等 CofficLab 兄弟应用共同消费。
+📖 English | [中文版](README_zh.md)
 
-在宿主设置界面注入一个独立入口「关于」，页面包含两部分：
+Shared **remote package** for the "About" plugin, consumed by CofficLab sibling apps such as Lumi / Cisum / GameFactory / GitOK / Wakey.
 
-- **我们的应用**：Coffic Lab 旗下其他应用，每款应用链接到官网的对应产品页；
-- **关于我们**：宿主自己的官网、隐私政策、服务条款。
+It injects a standalone "About" entry into the host settings interface. The page contains two sections:
 
-> **重要规则：本插件包不能依赖其他插件包，也不能被其他插件包依赖。**
+- **Our Apps**: other apps under Coffic Lab, each linking to its product page on the official website;
+- **About Us**: the host's own official website, privacy policy, and terms of service.
+
+> **Important rule: this plugin package must not depend on other plugin packages, and must not be depended on by other plugin packages.**
 >
-> 插件之间只通过 Provider 契约通信：共享能力放入 `Provider*` / `Kit*` 包，
-> 由宿主（`Factory*`）统一装配；跨插件互相引用会破坏插件的独立装配与卸载。
+> Plugins communicate only through Provider contracts: shared capabilities go into `Provider*` / `Kit*` packages, assembled uniformly by the host (`Factory*`); cross-plugin references break independent plugin assembly and uninstallation.
 
 ## Package
 
-- Manifest 包名：`LumiPluginAbout`（与仓库名一致，符合远程插件包命名规范）
-- Product / Target：`PluginAbout`（不带 `Lumi` 前缀）
+- Manifest package name: `LumiPluginAbout` (matches the repository name, per the remote plugin package naming convention)
+- Product / Target: `PluginAbout` (without the `Lumi` prefix)
 - Platform: macOS 14+ / iOS 17+
 - Swift tools: 6.0
 
-## 命名规范
+## Naming Convention
 
-CofficLab 的远程插件包统一遵循：
+CofficLab remote plugin packages follow this convention uniformly:
 
-| 仓库名 | manifest `name:` | product / target |
+| Repository | manifest `name:` | product / target |
 | --- | --- | --- |
 | `LumiPluginAbout` | `LumiPluginAbout` | `PluginAbout` |
 | `LumiPluginPluginManager` | `LumiPluginPluginManager` | `PluginPluginManager` |
 | `LumiPluginActivityBar` | `LumiPluginActivityBar` | `PluginActivityBar` |
 | `LumiPluginToast` | `LumiPluginToast` | `PluginToast` |
 
-理由：Xcode 的包依赖列表显示的是上游 manifest 里的 `Package(name:)`，不是仓库名。
-manifest 包名不带 `Lumi` 前缀会让用户在 Xcode 里看不到前缀。仓库名保持与包名一致，
-消费方 `.product(name:package:)` 的 `package:` 参数按 URL basename 匹配，必须写仓库名。
+Why: Xcode's package dependency list shows the upstream manifest's `Package(name:)`, not the repository name. Without the `Lumi` prefix in the manifest package name, users would not see the prefix in Xcode. The repository name stays consistent with the package name, and the consumer's `.product(name:package:)` `package:` argument matches the URL basename, so it must be the repository name.
 
-## 提供什么
+## What It Provides
 
-- 「关于」设置入口（通过 `ProviderSettingView` 注入）
-- 「我们的应用」分组：每行一款应用（图标 + 品牌名 + 一句话简介），点击跳转官网
-- 「关于我们」分组：宿主官网、隐私政策、服务条款
-- 「全部产品」入口：指向官网的完整产品目录页
+- An "About" settings entry (injected via `ProviderSettingView`)
+- An "Our Apps" section: one row per app (icon + brand name + one-line intro), tapping jumps to the official website
+- An "About Us" section: host official website, privacy policy, terms of service
+- An "All Products" entry: points to the full product catalog page on the official website
 
-## 宿主配置
+## Host Configuration
 
-「关于我们」分组的内容因宿主而异，必须由宿主注入：
+The "About Us" section content varies by host and must be injected by the host:
 
 ```swift
 AboutConfiguration(
@@ -54,12 +52,12 @@ AboutConfiguration(
 )
 ```
 
-- `officialWebsiteURLString`：**必填**，宿主自己的产品页地址。
-- `privacyPolicyURLString` / `termsOfServiceURLString`：可选，缺省时对应行不展示。
+- `officialWebsiteURLString`: **required**, the host's own product page URL.
+- `privacyPolicyURLString` / `termsOfServiceURLString`: optional; when absent, the corresponding row is not shown.
 
-`CofficApps.all`（Coffic Lab 旗下应用列表）对所有宿主一致，由本包维护。
+`CofficApps.all` (the list of Coffic Lab apps) is identical for all hosts and maintained by this package.
 
-## 依赖与集成
+## Dependencies and Integration
 
 ```swift
 dependencies: [
@@ -75,9 +73,9 @@ targets: [
 ]
 ```
 
-注意 `package:` 必须是仓库名 `LumiPluginAbout`，不是 product 名。
+Note that `package:` must be the repository name `LumiPluginAbout`, not the product name.
 
-宿主还需要在 Factory 里装配这个插件：
+The host also needs to assemble this plugin in its Factory:
 
 ```swift
 import PluginAbout
@@ -94,54 +92,47 @@ plugins.append(
 )
 ```
 
-## 品牌化：注入自己的插件 id
+## Branding: Inject Your Own Plugin ID
 
-宿主应用可以用自己的品牌 id 复用本包（与 `PluginPluginManager` / `PluginStorage`
-的做法一致）。不传参时使用默认的 `com.coffic.lumi.plugin.about`。
+Host apps can reuse this package with their own brand ID (consistent with the `PluginPluginManager` / `PluginStorage` approach). When not passed, the default `com.coffic.lumi.plugin.about` is used.
 
 ```swift
 AboutPlugin(id: "com.coffic.wakey.plugin.about", configuration: ...)
 ```
 
-注入后以下两处同步跟随：
+After injection, the following follow along:
 
-| 位置 | 取值 |
+| Location | Value |
 | --- | --- |
-| `AboutPlugin.id` | 注入的 id |
-| `AboutPlugin.metadata.id` | 注入的 id |
-| 日志 subsystem（`Logger`） | 注入的 id |
+| `AboutPlugin.id` | Injected ID |
+| `AboutPlugin.metadata.id` | Injected ID |
+| Log subsystem (`Logger`) | Injected ID |
 
-设置入口 id 恒为 `"about"`（与品牌无关，供设置深链使用）。
+The settings entry ID is always `"about"` (brand-independent, for settings deep links).
 
-> 更换 id 会同时更换插件的启用状态存储键：宿主切换 id 前需确认历史状态是否需要迁移。
+> Changing the ID also changes the plugin's enabled-state storage key: before switching IDs, hosts should confirm whether historical state needs migration.
 
-## 启用策略
+## Enable Policy
 
-默认 `.alwaysOn`：「关于」页是应用的身份页，宿主几乎总是需要它。
+Defaults to `.alwaysOn`: the About page is the app's identity page, which hosts almost always need.
 
-宿主若不希望它出现，可传 `.disabled` —— 内核启动时会彻底排除这个插件，
-它贡献的设置入口也随之消失：
+If the host does not want it to appear, pass `.disabled` — the kernel will completely exclude this plugin at startup, and its contributed settings entry disappears with it:
 
 ```swift
 AboutPlugin(configuration: ..., policy: .disabled)
 ```
 
-## 链接跳转
+## Link Handling
 
-详情视图用 SwiftUI 的 `openURL` 环境值打开链接，天然跨平台（含 visionOS），
-不需要 AppKit / UIKit 分支——`UIApplication.shared.open` 在 visionOS 上不可用。
+The detail view opens links via SwiftUI's `openURL` environment value, which is naturally cross-platform (including visionOS) and needs no AppKit / UIKit branching — `UIApplication.shared.open` is unavailable on visionOS.
 
-## 目录数据
+## Catalog Data
 
-应用列表是**编译期固定的静态数据**（`CofficApps.all`）。产品列表变化频率极低
-（按月计），走网络请求反而会带来「设置页在离线时是空的」这种负体验。
+The app list is **static data fixed at compile time** (`CofficApps.all`). The product list changes very rarely (on the order of months); going through network requests would instead bring the negative experience of "the settings page is empty when offline".
 
-链接使用官网短地址（`https://coffic.cn/lumi`、`https://coffic.cn/gitok` 等），
-站点的短路径会按浏览器语言跳转到对应语言的产品页。
+Links use official website short addresses (`https://coffic.cn/lumi`, `https://coffic.cn/gitok`, etc.); the site's short paths redirect to the corresponding language product page based on browser language.
 
-新增一款应用：在 `Sources/PluginAbout/Models/CofficApps.swift` 里追加一条
-`CofficApp`，并在 `Resources/Localizable.xcstrings` 里补上简介 key 的五种语言译文。
-测试会守住「每个简介 key 必须有中文译文」这条底线。
+To add an app: append a `CofficApp` entry in `Sources/PluginAbout/Models/CofficApps.swift`, and add translations of the intro key in all five languages in `Resources/Localizable.xcstrings`. Tests guard the bottom line that "every intro key must have a Chinese translation".
 
 ## Testing
 
@@ -151,6 +142,4 @@ From this package directory:
 swift test
 ```
 
-测试覆盖入口注册与撤回、品牌 id 注入、宿主官网注入、目录数据契约（id 唯一、
-URL 合法），以及「每条文案在字符串目录里有中文译文」这条底线。
-详见 `Tests/TestPlan.md`。
+Tests cover entry registration and withdrawal, brand ID injection, host website injection, catalog data contracts (unique IDs, valid URLs), and the bottom line that "every string has a Chinese translation in the string catalog". See `Tests/TestPlan.md` for details.
