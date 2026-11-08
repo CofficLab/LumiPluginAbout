@@ -95,8 +95,8 @@ struct CofficAppsTests {
 
     /// 关于页的无障碍与 AI 使用说明入口必须指向真实页面。
     ///
-    /// 两个站点写法不同（一个带 `www`，一个不带），按实际地址断言，
-    /// 避免有人为了「整齐」把域名统一掉。
+    /// 两条链接统一走 `coffic.cn`，不带 `www`：同页里出现两种域名写法
+    /// 会让人怀疑是不是两个站点。
     @Test
     func statementEntryPointsToCofficPages() throws {
         let accessibility = try #require(URL(string: CofficApps.accessibilityURLString))
@@ -105,9 +105,9 @@ struct CofficAppsTests {
         #expect(accessibility.host == "coffic.cn")
 
         let aiUsage = try #require(URL(string: CofficApps.aiUsageURLString))
-        #expect(aiUsage.absoluteString == "https://www.coffic.cn/ai-usage")
+        #expect(aiUsage.absoluteString == "https://coffic.cn/ai-usage")
         #expect(aiUsage.scheme == "https")
-        #expect(aiUsage.host == "www.coffic.cn")
+        #expect(aiUsage.host == "coffic.cn")
     }
 
     /// 每个应用都必须有名字、图标和简介 key——缺一项列表里就会出现空行。

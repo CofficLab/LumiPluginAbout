@@ -73,7 +73,5 @@ public enum CofficApps {
     public static let accessibilityURLString = "https://coffic.cn/accessibility"
 
     /// AI 使用说明入口。
-    ///
-    /// 该页面的域名带 `www`，与其它 Coffic 链接不同，按站点实际地址保留。
-    public static let aiUsageURLString = "https://www.coffic.cn/ai-usage"
+    public static let aiUsageURLString = "https://coffic.cn/ai-usage"
 }

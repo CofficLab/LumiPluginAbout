@@ -60,7 +60,7 @@ public final class AboutPlugin: SuperPlugin, SuperLog {
             id: id,
             name: pluginLocalization.string("About"),
             description: pluginLocalization.string("Our apps and information about this app."),
-            version: "3.0.0",
+            version: "3.0.1",
             category: .general,
             stage: .stable,
             policy: policy
