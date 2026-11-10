@@ -4,10 +4,10 @@
 
 Shared **remote package** for the "About" plugin, consumed by CofficLab sibling apps such as Lumi / Cisum / GameFactory / GitOK / Wakey.
 
-It injects a standalone "About" entry into the host settings interface. The page contains two sections:
+It injects a standalone "About" entry into the host settings interface. The page contains two sections (top to bottom):
 
-- **Our Apps**: other apps under Coffic Lab, each linking to its product page on the official website;
-- **About Us**: the host's own official website, privacy policy, and terms of service.
+- **About Us**: the host's own official website, privacy policy, terms of service, plus accessibility and AI usage statements;
+- **Our Products**: other apps under Coffic Lab, each linking to its product page on the official website.
 
 > **Important rule: this plugin package must not depend on other plugin packages, and must not be depended on by other plugin packages.**
 >
@@ -36,9 +36,20 @@ Why: Xcode's package dependency list shows the upstream manifest's `Package(name
 ## What It Provides
 
 - An "About" settings entry (injected via `ProviderSettingView`)
-- An "Our Apps" section: one row per app (icon + brand name + one-line intro), tapping jumps to the official website
-- An "About Us" section: host official website, privacy policy, terms of service
+- An "About Us" section: host official website, privacy policy, terms of service, accessibility and AI usage statements
+- An "Our Products" section: one row per app (icon + brand name + one-line intro), tapping jumps to the official website
 - An "All Products" entry: points to the full product catalog page on the official website
+
+## Page Structure
+
+The page has exactly two sections, ordered by `AboutSection.allCases`:
+
+| Order | Section | Content |
+| --- | --- | --- |
+| 1 | `aboutUs` | Information about this app itself (website, privacy, terms, statements) |
+| 2 | `ourProducts` | Coffic Lab's other products (pushed to the very bottom of the page) |
+
+"Our Products" sits at the bottom: it presents other products from the same lab rather than information about the app the user is currently in — putting it first would drown out the page's actual subject. The order is declared by the `AboutSection` enum, so changing the enum changes the page structure, and `Tests/PluginAboutTests/AboutSectionTests.swift` guards this decision.
 
 ## Host Configuration
 

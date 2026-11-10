@@ -3,10 +3,13 @@ import SwiftUI
 
 /// 「关于」页详情视图。
 ///
-/// 两个分组：
+/// 两个分组，从上到下依次是：
+/// - **关于我们**：宿主自己的官网、隐私政策、服务条款，以及无障碍与 AI 使用说明；
 /// - **我们的产品**：Coffic Lab 旗下应用与网站，按目录顺序混排；网站条目
-///   在名称右侧带一个「网站」标签，说明它不是可安装的 App；
-/// - **关于我们**：宿主自己的官网、隐私政策、服务条款，以及无障碍与 AI 使用说明。
+///   在名称右侧带一个「网站」标签，说明它不是可安装的 App。
+///
+/// 「我们的产品」放在页面最底部：它介绍的是同一实验室的其它产品，
+/// 而不是本应用本身的信息，排在前面会喧宾夺主。
 ///
 /// 行一律作为 `AppSettingSection` 的直接子元素（不套 `VStack`）：
 /// - macOS：section 内部是 `VStack(spacing: 12)`，行间自动留白；
@@ -50,10 +53,22 @@ public struct AboutView: View {
     public var body: some View {
         AppSettingsContentScaffold(maxContentWidth: nil) {
             VStack(alignment: .leading, spacing: 16) {
-                ourProductsSection
-                aboutUsSection
+                ForEach(AboutSection.allCases, id: \.self) { section in
+                    sectionContent(section)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+
+    /// 按分组枚举渲染对应内容。分组顺序由 `AboutSection.allCases` 决定。
+    @ViewBuilder
+    private func sectionContent(_ section: AboutSection) -> some View {
+        switch section {
+        case .aboutUs:
+            aboutUsSection
+        case .ourProducts:
+            ourProductsSection
         }
     }
 
