@@ -39,30 +39,29 @@
 | 18 | 应用目录 | Website entry points to Kuzee | P0 | ✅ 已覆盖 | `CofficAppsTests.swift` | `websiteEntryPointsToKuzee` |
 | 19 | 国际化 | Website name follows the system language | P1 | ✅ 已覆盖 | `CofficAppsTests.swift` | `websiteNameFollowsSystemLanguage` |
 | 20 | 国际化 | App names keep their brand spelling | P2 | ✅ 已覆盖 | `CofficAppsTests.swift` | `appNamesStayBrandSpelling` |
-| 21 | 国际化 | Benchly has a Chinese display name | P1 | ✅ 已覆盖 | `CofficAppsTests.swift` | `benchlyHasChineseDisplayName` |
-| 22 | 应用目录 | "All Products" entry points at the product catalog page | P1 | ✅ 已覆盖 | `CofficAppsTests.swift` | `allProductsEntryPointsToCatalogPage` |
-| 23 | 应用目录 | Accessibility / AI usage entries point at real coffic.cn pages | P0 | ✅ 已覆盖 | `CofficAppsTests.swift` | `statementEntryPointsToCofficPages` |
-| 24 | 应用目录 | Every app has complete presentation data | P2 | ✅ 已覆盖 | `CofficAppsTests.swift` | `everyAppHasCompletePresentationData` |
-| 25 | 应用目录 | Every system image resolves to a real SF Symbol | P1 | ✅ 已覆盖 | `CofficAppsTests.swift` | `everySystemImageResolvesToRealSymbol` |
-| 26 | 应用目录 | Retired apps are removed from the catalog | P1 | ✅ 已覆盖 | `CofficAppsTests.swift` | `retiredAppsAreRemoved` |
-| 27 | 国际化 | Every app tagline has a Chinese translation in the catalog | P0 | ✅ 已覆盖 | `CofficAppsTests.swift` | `everyAppTaglineHasChineseTranslation` |
-| 28 | 国际化 | Section title and "All Products" have Chinese translations | P1 | ✅ 已覆盖 | `CofficAppsTests.swift` | `sectionStringsHaveChineseTranslation` |
-| 29 | 国际化 | Section strings have Traditional Chinese translations | P1 | ✅ 已覆盖 | `CofficAppsTests.swift` | `sectionStringsHaveTraditionalChineseTranslation` |
-| 30 | 国际化 | About/legal-link strings have Chinese translations | P0 | ✅ 已覆盖 | `CofficAppsTests.swift` | `aboutStringsHaveChineseTranslation` |
+| 21 | 应用目录 | "All Products" entry points at the product catalog page | P1 | ✅ 已覆盖 | `CofficAppsTests.swift` | `allProductsEntryPointsToCatalogPage` |
+| 22 | 应用目录 | Accessibility / AI usage entries point at real coffic.cn pages | P0 | ✅ 已覆盖 | `CofficAppsTests.swift` | `statementEntryPointsToCofficPages` |
+| 23 | 应用目录 | Every app has complete presentation data | P2 | ✅ 已覆盖 | `CofficAppsTests.swift` | `everyAppHasCompletePresentationData` |
+| 24 | 应用目录 | Every system image resolves to a real SF Symbol | P1 | ✅ 已覆盖 | `CofficAppsTests.swift` | `everySystemImageResolvesToRealSymbol` |
+| 25 | 应用目录 | Retired apps are removed from the catalog | P1 | ✅ 已覆盖 | `CofficAppsTests.swift` | `retiredAppsAreRemoved` |
+| 26 | 国际化 | Every app tagline has a Chinese translation in the catalog | P0 | ✅ 已覆盖 | `CofficAppsTests.swift` | `everyAppTaglineHasChineseTranslation` |
+| 27 | 国际化 | Section title and "All Products" have Chinese translations | P1 | ✅ 已覆盖 | `CofficAppsTests.swift` | `sectionStringsHaveChineseTranslation` |
+| 28 | 国际化 | Section strings have Traditional Chinese translations | P1 | ✅ 已覆盖 | `CofficAppsTests.swift` | `sectionStringsHaveTraditionalChineseTranslation` |
+| 29 | 国际化 | About/legal-link strings have Chinese translations | P0 | ✅ 已覆盖 | `CofficAppsTests.swift` | `aboutStringsHaveChineseTranslation` |
 
 ## 覆盖率统计
 
 - P0: 12 / 12 ✅
-- P1: 15 / 15 ✅
+- P1: 14 / 14 ✅
 - P2: 3 / 3 ✅
 
-**总计: 30 / 30**（本包 `Tests/` 中已声明的 `@Test` 全部登记）
+**总计: 29 / 29**（本包 `Tests/` 中已声明的 `@Test` 全部登记）
 
 ## 测试文件
 
 - `AboutPluginTests.swift` — 9 条用例
 - `AboutSectionTests.swift` — 3 条用例
-- `CofficAppsTests.swift` — 18 条用例
+- `CofficAppsTests.swift` — 17 条用例
 
 ## 优先级说明
 

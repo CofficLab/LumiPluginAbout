@@ -16,7 +16,6 @@ struct CofficAppsTests {
         #expect(ids.contains("lumi"))
         #expect(ids.contains("gitok"))
         #expect(ids.contains("wakey"))
-        #expect(ids.contains("benchly"))
     }
 
     @Test
@@ -80,27 +79,12 @@ struct CofficAppsTests {
     ///
     /// 这些名称没有目录条目，运行时解析会回退为 key 本身——这里按中英文
     /// locale 各取一次，确认回退结果就是品牌名。
-    /// 有正式中文名的条目（如「跑分匠」）由单独测试覆盖。
     @Test
     func appNamesStayBrandSpelling() {
-        let localizedDisplayNames: Set<String> = ["benchly"]
-        for app in CofficApps.apps where !localizedDisplayNames.contains(app.id) {
+        for app in CofficApps.apps {
             #expect(pluginLocalization.string(app.nameKey, locale: Locale(identifier: "zh-Hans")) == app.nameKey)
             #expect(pluginLocalization.string(app.nameKey, locale: Locale(identifier: "en")) == app.nameKey)
         }
-    }
-
-    /// Benchly 有正式中文名「跑分匠」，必须随系统语言切换。
-    @Test
-    func benchlyHasChineseDisplayName() throws {
-        let benchly = try #require(CofficApps.apps.first { $0.id == "benchly" })
-        #expect(benchly.nameKey == "Benchly")
-        #expect(benchly.urlString == "https://coffic.cn/benchly")
-
-        for language in ["zh-Hans", "zh-Hant", "zh-HK", "zh-TW"] {
-            #expect(try #require(Self.localizedIn(language: language, benchly.nameKey)) == "跑分匠")
-        }
-        #expect(try #require(Self.localizedIn(language: "en", benchly.nameKey)) == "Benchly")
     }
 
     @Test

@@ -53,13 +53,6 @@ public enum CofficApps {
             taglineKey: "Turn a PDF into a fold-and-staple booklet",
             systemImage: "book.closed",
             urlString: "https://coffic.cn/booklet"
-        ),
-        CofficApp(
-            id: "benchly",
-            nameKey: "Benchly",
-            taglineKey: "Local CPU, memory and disk benchmarks",
-            systemImage: "speedometer",
-            urlString: "https://coffic.cn/benchly"
         )
     ]
 
