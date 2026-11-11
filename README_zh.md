@@ -78,7 +78,7 @@ AboutConfiguration(
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/CofficLab/LumiPluginAbout.git", from: "2.0.0"),
+    .package(url: "https://github.com/lumi-softworks/LumiPluginAbout.git", from: "2.0.0"),
 ],
 targets: [
     .target(
