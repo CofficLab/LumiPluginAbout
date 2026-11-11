@@ -3,12 +3,12 @@
 📖 [中文版](README_zh.md) | [English](README.md)
 
 「关于」插件的**共享远程包**，供 Lumi / Cisum / GameFactory / GitOK / Wakey
-等 CofficLab 兄弟应用共同消费。
+等 Lumi 家族兄弟应用共同消费。
 
 在宿主设置界面注入一个独立入口「关于」，页面包含两部分（从上到下）：
 
 - **关于我们**：宿主自己的官网、隐私政策、服务条款，以及无障碍与 AI 使用说明；
-- **我们的产品**：Coffic Lab 旗下其他应用，每款应用链接到官网的对应产品页。
+- **我们的产品**：Lumi Softworks 旗下其他应用，每款应用链接到官网的对应产品页。
 
 > **重要规则：本插件包不能依赖其他插件包，也不能被其他插件包依赖。**
 >
@@ -24,7 +24,7 @@
 
 ## 命名规范
 
-CofficLab 的远程插件包统一遵循：
+Lumi Softworks 的远程插件包统一遵循：
 
 | 仓库名 | manifest `name:` | product / target |
 | --- | --- | --- |
@@ -51,7 +51,7 @@ manifest 包名不带 `Lumi` 前缀会让用户在 Xcode 里看不到前缀。�
 | 顺序 | 分组 | 内容 |
 | --- | --- | --- |
 | 1 | `aboutUs` | 关于本应用自身的信息（官网、隐私政策、服务条款、声明） |
-| 2 | `ourProducts` | Coffic Lab 旗下其它产品（沉到页面最底部） |
+| 2 | `ourProducts` | Lumi Softworks 旗下其它产品（沉到页面最底部） |
 
 「我们的产品」放在最底部：它介绍的是同一实验室的其它产品，而不是本应用本身的信息，
 排在前面会喧宾夺主。顺序由 `AboutSection` 枚举声明，改动枚举即改动页面结构，
@@ -72,7 +72,7 @@ AboutConfiguration(
 - `officialWebsiteURLString`：**必填**，宿主自己的产品页地址。
 - `privacyPolicyURLString` / `termsOfServiceURLString`：可选，缺省时对应行不展示。
 
-`CofficApps.all`（Coffic Lab 旗下应用列表）对所有宿主一致，由本包维护。
+`CofficApps.all`（Lumi 家族应用列表）对所有宿主一致，由本包维护。
 
 ## 依赖与集成
 

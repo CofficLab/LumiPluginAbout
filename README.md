@@ -2,12 +2,12 @@
 
 📖 English | [中文版](README_zh.md)
 
-Shared **remote package** for the "About" plugin, consumed by CofficLab sibling apps such as Lumi / Cisum / GameFactory / GitOK / Wakey.
+Shared **remote package** for the "About" plugin, consumed by Lumi family sibling apps such as Lumi / Cisum / GameFactory / GitOK / Wakey.
 
 It injects a standalone "About" entry into the host settings interface. The page contains two sections (top to bottom):
 
 - **About Us**: the host's own official website, privacy policy, terms of service, plus accessibility and AI usage statements;
-- **Our Products**: other apps under Coffic Lab, each linking to its product page on the official website.
+- **Our Products**: other apps under Lumi Softworks, each linking to its product page on the official website.
 
 > **Important rule: this plugin package must not depend on other plugin packages, and must not be depended on by other plugin packages.**
 >
@@ -22,7 +22,7 @@ It injects a standalone "About" entry into the host settings interface. The page
 
 ## Naming Convention
 
-CofficLab remote plugin packages follow this convention uniformly:
+Lumi Softworks remote plugin packages follow this convention uniformly:
 
 | Repository | manifest `name:` | product / target |
 | --- | --- | --- |
@@ -47,7 +47,7 @@ The page has exactly two sections, ordered by `AboutSection.allCases`:
 | Order | Section | Content |
 | --- | --- | --- |
 | 1 | `aboutUs` | Information about this app itself (website, privacy, terms, statements) |
-| 2 | `ourProducts` | Coffic Lab's other products (pushed to the very bottom of the page) |
+| 2 | `ourProducts` | Lumi Softworks' other products (pushed to the very bottom of the page) |
 
 "Our Products" sits at the bottom: it presents other products from the same lab rather than information about the app the user is currently in — putting it first would drown out the page's actual subject. The order is declared by the `AboutSection` enum, so changing the enum changes the page structure, and `Tests/PluginAboutTests/AboutSectionTests.swift` guards this decision.
 
@@ -66,7 +66,7 @@ AboutConfiguration(
 - `officialWebsiteURLString`: **required**, the host's own product page URL.
 - `privacyPolicyURLString` / `termsOfServiceURLString`: optional; when absent, the corresponding row is not shown.
 
-`CofficApps.all` (the list of Coffic Lab apps) is identical for all hosts and maintained by this package.
+`CofficApps.all` (the list of Lumi family apps) is identical for all hosts and maintained by this package.
 
 ## Dependencies and Integration
 
